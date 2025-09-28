@@ -1,0 +1,20 @@
+[gd_scene load_steps=11 format=3 uid="uid://l0px3ebgif2b"]
+
+[ext_resource type="Script" path="res://CutscenePlayer.gd" id="1_lgxdj"]
+[ext_resource type="PackedScene" uid="uid://26ltfrlbrsj8" path="res://Scenes/Cutscene1.tscn" id="2_1ms1c"]
+[ext_resource type="PackedScene" uid="uid://yf74xmrchvtf" path="res://Scenes/Cutscene2.tscn" id="3_haskm"]
+[ext_resource type="PackedScene" uid="uid://dmebxpxceumv1" path="res://Scenes/Cutscene3(Decision).tscn" id="4_vvl84"]
+[ext_resource type="PackedScene" uid="uid://nxka2yxapoay" path="res://good_cutscene_1.tscn" id="5_qhwh0"]
+[ext_resource type="PackedScene" uid="uid://d3cmdenjkpa0c" path="res://good_cutscene_2.tscn" id="6_anbq3"]
+[ext_resource type="PackedScene" uid="uid://dyytvvra4igts" path="res://good_cutscene_3.tscn" id="7_up2w4"]
+[ext_resource type="PackedScene" uid="uid://bvsjvgmbdipg0" path="res://end.tscn" id="8_cq2e0"]
+[ext_resource type="PackedScene" uid="uid://qbsvhtq5l8sh" path="res://bad_cutscene_1.tscn" id="9_xmos6"]
+[ext_resource type="PackedScene" uid="uid://b25kb0ubg87l6" path="res://bad_cutscene_2.tscn" id="10_nn2rb"]
+
+[node name="CutscenePlayer" type="Node2D"]
+script = ExtResource("1_lgxdj")
+cutscenes = Array[PackedScene]([ExtResource("2_1ms1c"), ExtResource("3_haskm"), ExtResource("4_vvl84")])
+branch_a = Array[PackedScene]([ExtResource("5_qhwh0"), ExtResource("6_anbq3"), ExtResource("7_up2w4"), ExtResource("8_cq2e0")])
+branch_b = Array[PackedScene]([ExtResource("9_xmos6"), ExtResource("10_nn2rb"), ExtResource("8_cq2e0")])
+
+[node name="Container" type="Node2D" parent="."]

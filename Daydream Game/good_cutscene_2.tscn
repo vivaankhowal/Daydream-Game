@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3cmdenjkpa0c"]
+
+[ext_resource type="Texture2D" uid="uid://kothkt36r2g1" path="res://redknightdead.png" id="1_j4c85"]
+[ext_resource type="Theme" uid="uid://ccv8olfqkyg2i" path="res://new_theme.tres" id="2_cgdrx"]
+[ext_resource type="FontFile" uid="uid://dckytxalrtc10" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_5brx5"]
+
+[node name="BadCutscene1" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = -74.0
+offset_right = 1152.0
+offset_bottom = 674.0
+texture = ExtResource("1_j4c85")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 104.0
+offset_top = 52.0
+offset_right = 1044.0
+offset_bottom = 188.0
+theme = ExtResource("2_cgdrx")
+theme_override_fonts/normal_font = ExtResource("3_5brx5")
+text = "						
+			
+		The blue knight stares at his friend's corpse, realizing what his 
+		friend just did. The blue knight feels grateful but also regretful. 
+		\"It should have been me,\" he thought to himself.
+
+			"
+tab_size = 5

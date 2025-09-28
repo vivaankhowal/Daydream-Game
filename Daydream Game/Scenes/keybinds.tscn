@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://che4rq8wscgmt"]
+
+[ext_resource type="Texture2D" uid="uid://c4i3w6l2ukh33" path="res://assets/FunWood/Save_screen.jpg" id="1_pf2fv"]
+[ext_resource type="Theme" path="res://Styles/Default.tres" id="1_wcb4j"]
+[ext_resource type="Script" path="res://scripts/Backbutton.gd" id="2_wcb4j"]
+[ext_resource type="FontFile" uid="uid://d2eke0ckyacxn" path="res://assets/fonts/PixelOperator8.ttf" id="2_yd0o6"]
+
+[node name="Keybinds" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -300.0
+offset_top = -158.00002
+offset_right = 11.237427
+offset_bottom = 19.079773
+scale = Vector2(1.876381, 1.8861555)
+texture = ExtResource("1_pf2fv")
+expand_mode = 5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Button" type="Button" parent="Camera2D"]
+offset_left = -277.0
+offset_top = 122.0
+offset_right = -232.0
+offset_bottom = 153.0
+theme = ExtResource("1_wcb4j")
+theme_override_fonts/font = ExtResource("2_yd0o6")
+text = "Back"
+script = ExtResource("2_wcb4j")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = -196.0
+offset_top = -100.0
+offset_right = 187.0
+offset_bottom = 100.0
+theme = ExtResource("1_wcb4j")
+theme_override_fonts/font = ExtResource("2_yd0o6")
+text = "Keybinds
+
+W/Up arrow - jump
+A/Left arrow - move left
+D/Right arrow - move Right
+S/Down arrow - roll"
+
+[connection signal="pressed" from="Camera2D/Button" to="Camera2D/Button" method="_on_pressed"]

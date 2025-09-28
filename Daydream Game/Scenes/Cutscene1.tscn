@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://26ltfrlbrsj8"]
+
+[ext_resource type="Theme" uid="uid://ccv8olfqkyg2i" path="res://new_theme.tres" id="1_mll38"]
+[ext_resource type="Texture2D" uid="uid://ct8tbfjj2hiev" path="res://assets/redknightcelebrate.png" id="1_nlro8"]
+[ext_resource type="FontFile" uid="uid://dckytxalrtc10" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="2_srw3x"]
+
+[node name="Cutscene1" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = ExtResource("1_nlro8")
+expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 87.0
+offset_top = 475.0
+offset_right = 1027.0
+offset_bottom = 611.0
+theme = ExtResource("1_mll38")
+theme_override_fonts/normal_font = ExtResource("2_srw3x")
+text = "						
+			
+			With that, the demon is no more. The red knight shouts in 
+			triumph after defeating the beast, but little did he know 
+			the victory came at a cost. "
+tab_size = 5

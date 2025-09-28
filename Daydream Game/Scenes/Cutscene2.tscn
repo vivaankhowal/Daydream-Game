@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://yf74xmrchvtf"]
+
+[ext_resource type="Texture2D" uid="uid://cesn0syue8wdj" path="res://assets/redknightdiscovery.png" id="1_62v5v"]
+[ext_resource type="Theme" uid="uid://ccv8olfqkyg2i" path="res://new_theme.tres" id="2_qhpw8"]
+[ext_resource type="FontFile" uid="uid://dckytxalrtc10" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_j808j"]
+
+[node name="Cutscene1" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 1151.0
+offset_bottom = 647.0
+texture = ExtResource("1_62v5v")
+expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 87.0
+offset_top = 33.0
+offset_right = 1027.0
+offset_bottom = 169.0
+theme = ExtResource("2_qhpw8")
+theme_override_fonts/normal_font = ExtResource("3_j808j")
+text = "						
+			
+		The red knight stares in horror at his blue friend, realizing 
+		he is cursed.
+			"
+tab_size = 5

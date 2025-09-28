@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b25kb0ubg87l6"]
+
+[ext_resource type="Texture2D" uid="uid://cr30lac8tjcx2" path="res://assets/red knight leaving.png" id="1_mabrg"]
+[ext_resource type="Theme" uid="uid://ccv8olfqkyg2i" path="res://new_theme.tres" id="2_vwfk4"]
+[ext_resource type="FontFile" uid="uid://dckytxalrtc10" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_r18hv"]
+
+[node name="BadCutscene1" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 755.0
+texture = ExtResource("1_mabrg")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 77.0
+offset_top = 516.0
+offset_right = 1017.0
+offset_bottom = 652.0
+theme = ExtResource("2_vwfk4")
+theme_override_fonts/normal_font = ExtResource("3_r18hv")
+text = "						
+			
+		The red knight leaves the dungeon questioning his decision. The 
+		blue knight was his friend and he fought alongside him until the 
+		very end. Was it the right move, or a needed sacrifice? After all,
+		 sacrifices must be made for the greater good....      Right?
+
+			"
+tab_size = 5

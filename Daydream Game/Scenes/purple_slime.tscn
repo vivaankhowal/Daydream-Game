@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=3 uid="uid://bpoh1k1bxh7dl"]
+
+[ext_resource type="Script" path="res://GDScript/PurpleSlime.gd" id="1_2t16v"]
+[ext_resource type="Texture2D" uid="uid://cokbblplqjmft" path="res://assets/slime_purple.png" id="2_7hlnp"]
+[ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/killzone.tscn" id="3_wd4y6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3h03"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cdjn"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu2yr"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiuds"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc4tr"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyaw1"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tenpo"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmgk8"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg8bj"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dgdr"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1deun"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvsrf"]
+atlas = ExtResource("2_7hlnp")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dh15e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3h03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cdjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu2yr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiuds")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc4tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyaw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tenpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmgk8")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg8bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dgdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1deun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvsrf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngcjm"]
+size = Vector2(8, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spwc4"]
+size = Vector2(12, 12)
+
+[node name="PurpleSlime" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_2t16v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+visibility_layer = 5
+sprite_frames = SubResource("SpriteFrames_dh15e")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_ngcjm")
+
+[node name="Killzone" parent="CollisionShape2D" instance=ExtResource("3_wd4y6")]
+position = Vector2(1, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Killzone"]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_spwc4")
+
+[node name="EdgeCheck" type="RayCast2D" parent="."]
+target_position = Vector2(2.08165e-12, 16)
+
+[connection signal="body_entered" from="CollisionShape2D/Killzone" to="." method="_on_killzone_body_entered"]

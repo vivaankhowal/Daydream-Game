@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyytvvra4igts"]
+
+[ext_resource type="Texture2D" uid="uid://hr1sj4tnwv84" path="res://blueknightleaving.png" id="1_assxp"]
+[ext_resource type="Theme" uid="uid://ccv8olfqkyg2i" path="res://new_theme.tres" id="2_mvd4a"]
+[ext_resource type="FontFile" uid="uid://dckytxalrtc10" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_rqcua"]
+
+[node name="BadCutscene1" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 2.0
+offset_top = -74.0
+offset_right = 1152.0
+offset_bottom = 674.0
+texture = ExtResource("1_assxp")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 98.0
+offset_top = 40.0
+offset_right = 1038.0
+offset_bottom = 176.0
+theme = ExtResource("2_mvd4a")
+theme_override_fonts/normal_font = ExtResource("3_rqcua")
+text = "						
+			
+		The blue knight leaves the dungeon not feeling any triumph but 
+		only remorse. His fellow knight sacrificed himself to save his 
+		friend. Sacrifices must be made for the greater good sometimes,
+		 but was it really necessary?
+
+			"
+tab_size = 5
