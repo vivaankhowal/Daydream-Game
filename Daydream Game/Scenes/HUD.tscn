@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://ymegr15ffx8y"]
+
+[ext_resource type="Script" path="res://GDScript/HUD.gd" id="1_615wj"]
+[ext_resource type="Texture2D" uid="uid://dfrgk5hwdmcn4" path="res://assets/randomstuff/05.png" id="2_iatwu"]
+[ext_resource type="Texture2D" uid="uid://bygbem4auov75" path="res://assets/border.png" id="4_pn5f8"]
+[ext_resource type="Texture2D" uid="uid://dyskxm10q2fxt" path="res://assets/knight.png" id="5_j0sd8"]
+[ext_resource type="Texture2D" uid="uid://dbv6ocs1o5hhx" path="res://assets/base.png" id="5_v42bc"]
+[ext_resource type="Texture2D" uid="uid://brsvmt5shnhig" path="res://assets/DungeonAssetPack/DungeonAssets/blueknight.png" id="6_hkh88"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_615wj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.435294)
+position = Vector2(581, 580)
+scale = Vector2(6.85256, 4.725)
+texture = ExtResource("5_v42bc")
+
+[node name="HealthBar1" type="Sprite2D" parent="."]
+position = Vector2(178.75, 601)
+scale = Vector2(3, 3)
+texture = ExtResource("2_iatwu")
+hframes = 8
+vframes = 2
+
+[node name="HealthBar2" type="Sprite2D" parent="."]
+position = Vector2(1076.75, 604)
+scale = Vector2(3, 3)
+texture = ExtResource("2_iatwu")
+hframes = 8
+vframes = 2
+
+[node name="iconframe2" type="Sprite2D" parent="."]
+position = Vector2(967.75, 591.066)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_pn5f8")
+
+[node name="iconframe" type="Sprite2D" parent="."]
+position = Vector2(72.75, 587)
+scale = Vector2(2.5, 2.484)
+texture = ExtResource("4_pn5f8")
+
+[node name="Icon1" type="Sprite2D" parent="."]
+position = Vector2(78.75, 577)
+scale = Vector2(3, 3)
+texture = ExtResource("5_j0sd8")
+hframes = 8
+vframes = 8
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(973.25, 582)
+scale = Vector2(3, 3)
+texture = ExtResource("6_hkh88")
+hframes = 8
+vframes = 8

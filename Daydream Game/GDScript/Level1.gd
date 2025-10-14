@@ -18,4 +18,3 @@ func spawn_players():
 
 	add_child(player1)
 	add_child(player2)
-

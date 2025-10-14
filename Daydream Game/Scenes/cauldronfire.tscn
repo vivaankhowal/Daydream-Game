@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsadhdcdnjpm0"]
+
+[ext_resource type="Texture2D" uid="uid://qrrfi4caqqxr" path="res://assets/fire loops/burning_loop_2.png" id="1_0sn5p"]
+[ext_resource type="Script" path="res://GDScript/cauldronfire.gd" id="1_vltio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poqlc"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(0, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jaebb"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(20, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a61n5"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(40, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wemms"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(60, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lhvp"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(80, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb0df"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(100, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05yn7"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(120, 0, 20, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bt5w"]
+atlas = ExtResource("1_0sn5p")
+region = Rect2(140, 0, 20, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abjem"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poqlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jaebb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a61n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wemms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lhvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb0df")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05yn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bt5w")
+}],
+"loop": true,
+"name": &"loop",
+"speed": 10.0
+}]
+
+[node name="Cauldron Fire" type="Node2D"]
+script = ExtResource("1_vltio")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_abjem")
+animation = &"loop"
+frame = 5
+frame_progress = 0.592987

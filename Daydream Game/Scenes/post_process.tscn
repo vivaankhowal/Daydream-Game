@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn4sbmmois0e7"]
+
+[ext_resource type="Shader" path="res://post_process.gdshader" id="1_mpbch"]
+[ext_resource type="Script" path="res://GDScript/post_process.gd" id="1_oc5hy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5887"]
+shader = ExtResource("1_mpbch")
+shader_parameter/desaturate = 0.0
+
+[node name="PostProcess" type="CanvasLayer"]
+script = ExtResource("1_oc5hy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_f5887")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)

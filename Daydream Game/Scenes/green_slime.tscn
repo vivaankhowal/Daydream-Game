@@ -103,7 +103,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ngcjm"]
@@ -113,13 +113,13 @@ size = Vector2(8, 10)
 size = Vector2(12, 12)
 
 [node name="GreenSlime" type="CharacterBody2D" groups=["enemies"]]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_8224o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dh15e")
-animation = &"hurt"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

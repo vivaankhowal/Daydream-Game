@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bvyywv0pfbjbj"]
 
 [ext_resource type="Script" path="res://GDScript/big_mouth.gd" id="1_owe03"]
-[ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="2_pxfdn"]
+[ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/Level 1 Tileset/0x72_DungeonTilesetII_v1.7.png" id="2_pxfdn"]
 [ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/killzone.tscn" id="2_yl8x4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cqag6"]

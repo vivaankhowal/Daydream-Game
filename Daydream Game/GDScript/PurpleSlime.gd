@@ -70,7 +70,7 @@ func _physics_process(delta):
 # -----------------------------
 # COLLISION DAMAGE
 # -----------------------------
-func _on_Killzone_body_entered(body):
+func _on_killzone_body_entered(body):
 	if dead:
 		return
 	if body.is_in_group("players") and body.has_method("take_damage"):

@@ -5,7 +5,7 @@ extends CharacterBody2D
 # -----------------------------
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
-const MAX_HEALTH = 5
+const MAX_HEALTH = 7
 
 # Roll tuning
 const ROLL_SPEED = 120.0
@@ -15,6 +15,7 @@ const ROLL_DURATION = 0.4  # seconds
 const KNOCKBACK_X = 80.0
 const KNOCKBACK_Y = -60.0
 
+signal player_died
 # -----------------------------
 # VARIABLES
 # -----------------------------
@@ -43,8 +44,12 @@ var roll_timer: Timer
 # -----------------------------
 func _ready():
 	add_to_group("players")
+	collision_layer = 2
+	collision_mask = 1 | 4   # ground + hitboxes
+
 	attack_hitbox.monitoring = false   # off until attacking
 	attack_shape.disabled = false      # shape must always be enabled!
+
 	print("Main anims:", anim.sprite_frames.get_animation_names())
 
 	# Add roll timer
@@ -53,6 +58,10 @@ func _ready():
 	roll_timer.wait_time = ROLL_DURATION
 	add_child(roll_timer)
 	roll_timer.connect("timeout", Callable(self, "_end_roll"))
+
+	# ✅ Connect hitbox signal safely
+	if attack_hitbox and not attack_hitbox.is_connected("body_entered", Callable(self, "_on_attack_hitbox_body_entered")):
+		attack_hitbox.connect("body_entered", Callable(self, "_on_attack_hitbox_body_entered"))
 
 # -----------------------------
 # PHYSICS PROCESS
@@ -66,16 +75,16 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Jump
-	if Input.is_action_just_pressed("p1_up") and is_on_floor() and not rolling:
+	if Input.is_action_just_pressed("p1_up") and is_on_floor() and not rolling and not hurting:
 		velocity.y = JUMP_VELOCITY
 		anim.play("jump")
 
 	# Roll
-	if Input.is_action_just_pressed("p1_roll") and not rolling:
+	if Input.is_action_just_pressed("p1_roll") and not rolling and not hurting:
 		start_roll()
 
 	# Attack
-	if Input.is_action_just_pressed("p1_attack") and not rolling:
+	if Input.is_action_just_pressed("p1_attack") and not rolling and not hurting:
 		play_hit()
 
 	# Movement
@@ -107,7 +116,7 @@ func _physics_process(delta):
 # -----------------------------
 func start_roll():
 	rolling = true
-	anim.play("roll")   # roll anim can loop
+	anim.play("roll")
 	roll_vector = Vector2.RIGHT if facing_right else Vector2.LEFT
 	roll_timer.start()
 
@@ -130,31 +139,37 @@ func play_hit():
 
 		hit_anim.play("hit")
 
-		# ✅ Enable attack hitbox
+		# Enable attack hitbox
 		attack_hitbox.monitoring = true
-		attack_shape.disabled = false   # make sure shape is on
-		
+		attack_shape.disabled = false
 
 func _on_attack_hitbox_body_entered(body):
-	print("Hitbox touched:", body.name, " Groups:", body.get_groups())
 	if body.is_in_group("enemies"):
 		if body.has_method("take_hit"):
-			print("Damaging enemy")
+			print("Damaging enemy:", body.name)
 			body.take_hit(1)
+			# Prevent multi-hit spam
+			attack_hitbox.monitoring = false
 
 # -----------------------------
 # DAMAGE + DEATH
 # -----------------------------
 func take_damage(amount: int = 1):
-	if invulnerable or dead:
+	# After health is changed
+	if invulnerable or dead or hurting:
 		return
 
+	hurting = true
 	health -= amount
-	print(name, "took damage! Hearts left:", health)
+	HUD.update_health1(health)
+	if health < 0:
+		health = 0
 
-	if anim.sprite_frames and anim.sprite_frames.has_animation("hurt"):
+	print(name, "took", amount, "damage! Hearts left:", health)
+
+	# Play hurt animation
+	if anim.sprite_frames.has_animation("hurt"):
 		anim.play("hurt")
-		hurting = true
 
 	# Knockback
 	if facing_right:
@@ -162,9 +177,17 @@ func take_damage(amount: int = 1):
 	else:
 		velocity = Vector2(KNOCKBACK_X, KNOCKBACK_Y)
 
-	set_collision_mask_value(2, false)
+	# Temporary invulnerability
 	invulnerable = true
 	invuln_timer.start()
+
+	# Small hurt cooldown (prevents rapid overlap)
+	await get_tree().create_timer(0.35).timeout
+	hurting = false
+
+	# Resume idle if alive
+	if not dead and is_on_floor():
+		anim.play("idle")
 
 	if health <= 0:
 		die()
@@ -173,19 +196,25 @@ func die():
 	if dead:
 		return
 	dead = true
+	emit_signal("player_died")
 	print(name, "died!")
 
+	# Stop all active movement / actions
 	set_physics_process(false)
 	velocity = Vector2.ZERO
 	rolling = false
 	hurting = false
 
-	if anim.sprite_frames and anim.sprite_frames.has_animation("death"):
+	# Play death animation first
+	if anim.sprite_frames.has_animation("death"):
 		anim.play("death")
-		await anim.animation_finished
+		await anim.animation_finished  # wait until death animation ends
 
+	# Once animation is done → hide & disable collisions
 	visible = false
 	collision.disabled = true
+	queue_free()  # completely remove from scene
+
 
 # -----------------------------
 # SIGNAL CALLBACKS
@@ -196,10 +225,13 @@ func _on_timer_timeout():
 	invulnerable = false
 	set_collision_mask_value(2, true)
 
-func _on_AnimatedSprite2D_animation_finished():
+func _on_animated_sprite_2d_animation_finished():
 	if anim.animation == "hurt":
 		hurting = false
-	elif hit_anim.animation == "hit":
+		if not dead and not rolling:
+			anim.play("idle")
+
+	if hit_anim.animation == "hit":
 		hit_anim.visible = false
 		attack_hitbox.monitoring = false
 		print("Attack hitbox disabled")
@@ -207,9 +239,31 @@ func _on_AnimatedSprite2D_animation_finished():
 func _on_hit_sprite_animation_finished():
 	if hit_anim.animation == "hit":
 		hit_anim.visible = false
-
-		# ✅ Disable hitbox as soon as swing ends
 		attack_hitbox.monitoring = false
 		attack_shape.disabled = true
 		print("Attack hitbox disabled")
 
+func play_death_after_fade():
+	if dead:
+		return
+
+	dead = true
+	print(name, "playing death animation after fade")
+
+	# Ensure this player still processes while game is paused
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	# Disable input & movement
+	set_physics_process(false)
+	velocity = Vector2.ZERO
+
+	# Play death animation
+	if anim and anim.sprite_frames.has_animation("death"):
+		anim.play("death")
+		await anim.animation_finished
+
+	# Hide after animation completes
+	visible = false
+
+	# Optional: reset process mode
+	process_mode = Node.PROCESS_MODE_INHERIT

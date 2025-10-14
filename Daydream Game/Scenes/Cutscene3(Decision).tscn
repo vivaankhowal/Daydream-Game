@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmebxpxceumv1"]
 
-[ext_resource type="Script" path="res://Scenes/Cutscene3(Decision).gd" id="1_i452h"]
-[ext_resource type="Texture2D" uid="uid://bmn3bake5hkvh" path="res://Scenes/redknighthelps.png" id="1_mxfce"]
+[ext_resource type="Script" path="res://GDScript/Cutscene3(Decision).gd" id="1_i452h"]
+[ext_resource type="Texture2D" uid="uid://bmn3bake5hkvh" path="res://assets/redknighthelps.png" id="1_mxfce"]
 [ext_resource type="Theme" uid="uid://ccv8olfqkyg2i" path="res://new_theme.tres" id="2_5smpk"]
 [ext_resource type="FontFile" uid="uid://dckytxalrtc10" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_gbyhf"]
 

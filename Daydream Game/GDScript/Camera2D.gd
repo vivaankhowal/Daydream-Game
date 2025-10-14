@@ -43,4 +43,3 @@ func _process(delta):
 		var t = clamp(distance / max_distance, 0.0, 1.0)
 		var target_zoom = Vector2.ONE * lerp(min_zoom, max_zoom, t)
 		zoom = zoom.lerp(target_zoom, delta * smooth_speed)
-

@@ -240,7 +240,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"roll",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -353,12 +353,15 @@ size = Vector2(42, 16.25)
 size = Vector2(11, 15)
 
 [node name="Player1" type="CharacterBody2D" groups=["players"]]
-collision_mask = 3
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_43exw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ikdkn")
-animation = &"hurt"
+animation = &"roll"
+frame = 7
+frame_progress = 1.0
 
 [node name="HitSprite" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -370,8 +373,8 @@ frame_progress = 0.342198
 
 [node name="AttackHitbox" type="Area2D" parent="HitSprite"]
 position = Vector2(0, 3)
-collision_layer = 4
-collision_mask = 2
+collision_layer = 8
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitSprite/AttackHitbox"]
 position = Vector2(2, -2.875)
@@ -383,6 +386,7 @@ shape = SubResource("RectangleShape2D_dxj8l")
 
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="HitSprite" to="." method="_on_hit_sprite_animation_finished"]
 [connection signal="body_entered" from="HitSprite/AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

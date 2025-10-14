@@ -8,6 +8,7 @@ extends Camera2D
 @export var boss_hold_time: float = 2.0   # seconds to hold on boss before returning
 
 var live_players: Array[Node] = []
+signal death_cinematic_done
 
 var boss_intro_mode: bool = false
 var boss_target: Node = null
@@ -20,16 +21,6 @@ func _ready():
 
 func _process(delta):
 	live_players = live_players.filter(func(p): return is_instance_valid(p) and not p.dead)
-
-	if boss_intro_mode and boss_target and is_instance_valid(boss_target):
-		# Focus on boss
-		global_position = global_position.lerp(boss_target.global_position, delta * smooth_speed)
-		zoom = zoom.lerp(Vector2.ONE * boss_zoom, delta * 2.0)
-
-		boss_timer += delta
-		if boss_timer >= boss_hold_time:
-			_end_boss_intro()
-		return
 
 	if live_players.size() == 0:
 		return
@@ -94,3 +85,34 @@ func _end_boss_intro():
 	boss_intro_mode = false
 	boss_target = null
 	boss_timer = 0.0
+
+# -----------------------------
+# Death cinematic (no zoom)
+# -----------------------------
+func start_death_cinematic(dead_player: Node):
+	if not dead_player or not is_instance_valid(dead_player):
+		return
+
+	print("Starting death cinematic on:", dead_player.name)
+	
+	# Temporarily stop normal camera logic
+	boss_intro_mode = true
+	boss_target = dead_player
+	boss_timer = 0.0
+
+	var target_pos = dead_player.global_position
+	var tween = create_tween()
+
+	# Smoothly move camera to the dead player
+	tween.tween_property(self, "global_position", target_pos, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await tween.finished
+
+	# Optional: pause briefly for dramatic effect
+	await get_tree().create_timer(0.6).timeout
+
+	# Return control back to normal
+	boss_intro_mode = false
+	boss_target = null
+	boss_timer = 0.0
+
+	emit_signal("death_cinematic_done")

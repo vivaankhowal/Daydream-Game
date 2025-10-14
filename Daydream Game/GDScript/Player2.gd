@@ -5,7 +5,7 @@ extends CharacterBody2D
 # -----------------------------
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
-const MAX_HEALTH = 5
+const MAX_HEALTH = 7
 
 # Roll tuning
 const ROLL_SPEED = 120.0
@@ -15,6 +15,7 @@ const ROLL_DURATION = 0.4  # seconds
 const KNOCKBACK_X = 80.0
 const KNOCKBACK_Y = -60.0
 
+signal player_died
 # -----------------------------
 # VARIABLES
 # -----------------------------
@@ -43,6 +44,8 @@ var roll_timer: Timer
 # -----------------------------
 func _ready():
 	add_to_group("players")
+	collision_layer = 2
+	collision_mask = 1 | 4   # ground + hitboxes
 	attack_hitbox.monitoring = false   # off until attacking
 	attack_shape.disabled = false      # shape must always be enabled!
 	print("Main anims:", anim.sprite_frames.get_animation_names())
@@ -145,10 +148,12 @@ func _on_attack_hitbox_body_entered(body):
 # DAMAGE + DEATH
 # -----------------------------
 func take_damage(amount: int = 1):
+	# After health is changed
 	if invulnerable or dead:
 		return
 
 	health -= amount
+	HUD.update_health2(health)
 	print(name, "took damage! Hearts left:", health)
 
 	if anim.sprite_frames and anim.sprite_frames.has_animation("hurt"):
@@ -172,6 +177,7 @@ func die():
 	if dead:
 		return
 	dead = true
+	emit_signal("player_died")
 	print(name, "died!")
 
 	set_physics_process(false)
@@ -195,13 +201,25 @@ func _on_timer_timeout():
 	invulnerable = false
 	set_collision_mask_value(2, true)
 
-func _on_AnimatedSprite2D_animation_finished():
-	if anim.animation == "hurt":
-		hurting = false
-	elif hit_anim.animation == "hit":
+func _on_animated_sprite_2d_animation_finished():
+	# When the main sprite finishes an animation
+	match anim.animation:
+		"hurt":
+			hurting = false
+			if not dead and not rolling and not Input.is_action_pressed("p1_attack"):
+				anim.play("idle")
+
+		"death":
+			# Death handled in die()
+			pass
+
+	# When the hit animation finishes
+	if hit_anim.animation == "hit":
 		hit_anim.visible = false
 		attack_hitbox.monitoring = false
 		print("Attack hitbox disabled")
+
+
 
 func _on_hit_sprite_animation_finished():
 	if hit_anim.animation == "hit":
@@ -211,3 +229,28 @@ func _on_hit_sprite_animation_finished():
 		attack_hitbox.monitoring = false
 		attack_shape.disabled = true
 		print("Attack hitbox disabled")
+
+func play_death_after_fade():
+	if dead:
+		return
+
+	dead = true
+	print(name, "playing death animation after fade")
+
+	# Ensure this player still processes while game is paused
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	# Disable input & movement
+	set_physics_process(false)
+	velocity = Vector2.ZERO
+
+	# Play death animation
+	if anim and anim.sprite_frames.has_animation("death"):
+		anim.play("death")
+		await anim.animation_finished
+
+	# Hide after animation completes
+	visible = false
+
+	# Optional: reset process mode
+	process_mode = Node.PROCESS_MODE_INHERIT

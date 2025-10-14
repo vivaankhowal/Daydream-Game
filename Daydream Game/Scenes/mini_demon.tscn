@@ -1,8 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://cltumrkrigput"]
+[gd_scene load_steps=17 format=3 uid="uid://cltumrkrigput"]
 
-[ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="1_a3rk0"]
+[ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/Level 1 Tileset/0x72_DungeonTilesetII_v1.7.png" id="1_a3rk0"]
 [ext_resource type="Script" path="res://GDScript/mini_demon.gd" id="1_u52wm"]
+[ext_resource type="Texture2D" uid="uid://b7mmimik31ktj" path="res://assets/hurtanimations.png" id="2_4elko"]
 [ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/killzone.tscn" id="2_4rd63"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg4o5"]
+atlas = ExtResource("2_4elko")
+region = Rect2(385, 61, 16, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjooh"]
 atlas = ExtResource("1_a3rk0")
@@ -40,6 +45,14 @@ region = Rect2(481, 61, 16, 23)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gg4o5")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gjooh")
 }, {
 "duration": 1.0,
@@ -75,13 +88,13 @@ size = Vector2(7, 11)
 size = Vector2(9, 13)
 
 [node name="MiniDemon" type="CharacterBody2D" groups=["enemies"]]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_u52wm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2syi8")
-animation = &"idle"
+animation = &"hurt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1.5)

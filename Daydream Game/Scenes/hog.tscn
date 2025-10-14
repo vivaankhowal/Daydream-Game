@@ -1,8 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfkg2pyejmnfb"]
+[gd_scene load_steps=17 format=3 uid="uid://dfkg2pyejmnfb"]
 
-[ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7.png" id="1_3vwe3"]
+[ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/Level 1 Tileset/0x72_DungeonTilesetII_v1.7.png" id="1_3vwe3"]
 [ext_resource type="Script" path="res://GDScript/hog.gd" id="1_d6l6q"]
 [ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/killzone.tscn" id="2_2lbhk"]
+[ext_resource type="Texture2D" uid="uid://b7mmimik31ktj" path="res://assets/hurtanimations.png" id="2_b7c71"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebhgg"]
+atlas = ExtResource("2_b7c71")
+region = Rect2(385, 38, 16, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1gmao"]
 atlas = ExtResource("1_3vwe3")
@@ -40,6 +45,14 @@ region = Rect2(481, 38, 16, 23)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ebhgg")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1gmao")
 }, {
 "duration": 1.0,
@@ -64,7 +77,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_smqtk")
 }],
 "loop": true,
-"name": &"run",
+"name": &"idle",
 "speed": 15.0
 }]
 
@@ -75,21 +88,21 @@ size = Vector2(7, 8)
 size = Vector2(9, 20)
 
 [node name="Hog" type="CharacterBody2D" groups=["enemies"]]
-collision_layer = 2
-collision_mask = 5
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("1_d6l6q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_c7h6b")
-animation = &"run"
-frame_progress = 0.927077
+animation = &"hurt"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_n7ca8")
 
 [node name="Killzone" parent="CollisionShape2D" instance=ExtResource("2_2lbhk")]
-collision_mask = 5
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Killzone"]
 position = Vector2(0, -4)

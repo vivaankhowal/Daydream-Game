@@ -24,4 +24,3 @@ func _spawn_boss():
 	var cam: Camera2D = get_viewport().get_camera_2d()
 	if cam:
 		cam.start_boss_intro([get_node("Player1"), get_node("Player2")], boss, $TileMap.get_used_rect())
-
