@@ -6,7 +6,7 @@ extends Node2D
 @onready var door = $Door
 @onready var post_process = $PostProcess  # 🔥 for grayscale effect
 @onready var camera: Camera2D = $Camera2D
-@onready var game_over_skull_scene: PackedScene = preload("res://Scenes/game_over_skull.tscn")
+@onready var game_over_skull_scene: PackedScene = preload("res://Scenes/Extras/game_over_skull.tscn")
 
 
 # ---------------------------

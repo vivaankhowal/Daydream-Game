@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://denq7glyorb1p"]
 
-[ext_resource type="Script" path="res://Scenes/TitleScreen.gd" id="1_fq1iv"]
-[ext_resource type="FontFile" uid="uid://d2eke0ckyacxn" path="res://assets/fonts/PixelOperator8.ttf" id="2_cs8n0"]
+[ext_resource type="Script" uid="uid://diudlgw16fbmw" path="res://GDScript/TitleScreen.gd" id="1_l2s6o"]
+[ext_resource type="FontFile" uid="uid://d2eke0ckyacxn" path="res://assets/fonts/PixelOperator8.ttf" id="2_lb2ea"]
 
 [sub_resource type="Animation" id="Animation_orqll"]
 resource_name = "fade_in"
@@ -23,12 +23,12 @@ resource_name = "fade_out"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6l4ll"]
 _data = {
-"fade_in": SubResource("Animation_orqll"),
-"fade_out": SubResource("Animation_08vqy")
+&"fade_in": SubResource("Animation_orqll"),
+&"fade_out": SubResource("Animation_08vqy")
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_fq1iv")
+script = ExtResource("1_l2s6o")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -48,7 +48,7 @@ offset_right = -61.0
 offset_bottom = 206.0
 grow_horizontal = 2
 scale = Vector2(3, 3)
-theme_override_fonts/font = ExtResource("2_cs8n0")
+theme_override_fonts/font = ExtResource("2_lb2ea")
 text = "A 2 Knight's Tale"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -76,5 +76,5 @@ text = "Exit
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6l4ll")
+&"": SubResource("AnimationLibrary_6l4ll")
 }

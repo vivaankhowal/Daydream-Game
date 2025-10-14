@@ -11,13 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://d2vwan0qqhd34" path="res://assets/background 4/orig_big.png" id="5_p8ryq"]
 [ext_resource type="Texture2D" uid="uid://i0jy65f3fxbw" path="res://assets/Seasonal Tilesets/1 - Grassland/Grassland_entities (16 x 16).png" id="5_wrpav"]
 [ext_resource type="Texture2D" uid="uid://dfy4gq343c6n6" path="res://assets/Seasonal Tilesets/1 - Grassland/Extra_plants (16 x 16).png" id="6_30c1w"]
-[ext_resource type="PackedScene" uid="uid://bn3ckfll5tmhr" path="res://Scenes/Player2.tscn" id="6_esy88"]
+[ext_resource type="PackedScene" uid="uid://bn3ckfll5tmhr" path="res://Scenes/Player Assets/Player2.tscn" id="6_esy88"]
 [ext_resource type="Script" uid="uid://bwq1csbeyorjd" path="res://GDScript/Camera2D.gd" id="7_fgcge"]
 [ext_resource type="Texture2D" uid="uid://gsix52b4mt03" path="res://assets/Seasonal Tilesets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" id="8_n12py"]
 [ext_resource type="Script" uid="uid://3fx4eu36g5b" path="res://GDScript/InteractZone.gd" id="12_7j2ek"]
 [ext_resource type="Texture2D" uid="uid://bie57s83uy3nx" path="res://assets/background 4/1.png" id="12_h68gh"]
 [ext_resource type="Texture2D" uid="uid://cauaatfwenhcp" path="res://assets/background 4/2.png" id="13_61p4l"]
-[ext_resource type="PackedScene" uid="uid://pf3xrpprsaqb" path="res://Scenes/Player1.tscn" id="16_g70s5"]
+[ext_resource type="PackedScene" uid="uid://pf3xrpprsaqb" path="res://Scenes/Player Assets/Player1.tscn" id="16_g70s5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5sfgf"]
 texture = ExtResource("2_4uqsr")

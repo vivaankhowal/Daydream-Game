@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://cmo8lhiki8pm8"]
 
-[ext_resource type="Script" path="res://GDScript/game_over_skull.gd" id="1_y0vld"]
+[ext_resource type="Script" uid="uid://cjylopo5577m6" path="res://GDScript/game_over_skull.gd" id="1_y0vld"]
 [ext_resource type="Texture2D" uid="uid://c53ifd2f1oc3q" path="res://assets/skullspritesheet.png" id="3_6i0l2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0s82"]
@@ -155,7 +155,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"skull",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [node name="GameOverSkull" type="CanvasLayer"]

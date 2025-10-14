@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://bx0iohkvmfkb6"]
 
-[ext_resource type="Script" path="res://GDScript/boss_lvl.gd" id="1_8fih1"]
-[ext_resource type="PackedScene" uid="uid://b7jvayxkht2j1" path="res://Scenes/Devil_slime.tscn" id="2_ah1ef"]
-[ext_resource type="PackedScene" uid="uid://pf3xrpprsaqb" path="res://Scenes/Player1.tscn" id="3_ix37i"]
-[ext_resource type="PackedScene" uid="uid://bn3ckfll5tmhr" path="res://Scenes/Player2.tscn" id="4_0oljr"]
-[ext_resource type="Script" path="res://GDScript/Camera2D (2).gd" id="5_ohb57"]
+[ext_resource type="Script" uid="uid://dyuqc335tsj3m" path="res://GDScript/boss_lvl.gd" id="1_8fih1"]
+[ext_resource type="PackedScene" uid="uid://b7jvayxkht2j1" path="res://Scenes/Bosses/Devil_slime.tscn" id="2_ah1ef"]
+[ext_resource type="PackedScene" uid="uid://pf3xrpprsaqb" path="res://Scenes/Player Assets/Player1.tscn" id="3_ix37i"]
+[ext_resource type="PackedScene" uid="uid://bn3ckfll5tmhr" path="res://Scenes/Player Assets/Player2.tscn" id="4_0oljr"]
+[ext_resource type="Script" uid="uid://doqrh2l0vpdih" path="res://GDScript/Camera2D (2).gd" id="5_ohb57"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4ov24"]
 load_path = "res://.godot/imported/DarkCastleGrid.png-2acbf499ff9fc0f39bdec5d98a3a5869.ctex"

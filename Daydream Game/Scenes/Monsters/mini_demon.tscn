@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=3 uid="uid://cltumrkrigput"]
 
 [ext_resource type="Texture2D" uid="uid://cvgvn8u413uvn" path="res://assets/Level 1 Tileset/0x72_DungeonTilesetII_v1.7.png" id="1_a3rk0"]
-[ext_resource type="Script" path="res://GDScript/mini_demon.gd" id="1_u52wm"]
+[ext_resource type="Script" uid="uid://bgmv6yye1fg5a" path="res://GDScript/mini_demon.gd" id="1_u52wm"]
 [ext_resource type="Texture2D" uid="uid://b7mmimik31ktj" path="res://assets/hurtanimations.png" id="2_4elko"]
-[ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/killzone.tscn" id="2_4rd63"]
+[ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/Monsters/killzone.tscn" id="2_4rd63"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gg4o5"]
 atlas = ExtResource("2_4elko")

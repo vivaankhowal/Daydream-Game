@@ -1,6 +1,6 @@
 [gd_scene load_steps=67 format=3 uid="uid://b7jvayxkht2j1"]
 
-[ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/killzone.tscn" id="2_d2tt0"]
+[ext_resource type="PackedScene" uid="uid://ccfiiiy1q4sts" path="res://Scenes/Monsters/killzone.tscn" id="1_781tk"]
 
 [sub_resource type="GDScript" id="GDScript_bx55i"]
 script/source = "extends CharacterBody2D
@@ -155,8 +155,6 @@ func die():
 
 	# Switch to cutscene player scene
 	get_tree().change_scene_to_file(\"res://Scenes/CutscenePlayer.tscn\")
-
-
 "
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h5q13"]
@@ -631,7 +629,7 @@ animation = &"Damage"
 position = Vector2(0, -38)
 shape = SubResource("CapsuleShape2D_yi2kj")
 
-[node name="Killzone" parent="CollisionShape2D" instance=ExtResource("2_d2tt0")]
+[node name="Killzone" parent="CollisionShape2D" instance=ExtResource("1_781tk")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Killzone"]
 position = Vector2(0.5, -1)
