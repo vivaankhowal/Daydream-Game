@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Daydream Game"
-run/main_scene="res://Scenes/Levels/Beginning.tscn"
+run/main_scene="uid://dh8rs828mf3wi"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/icon.svg"
 

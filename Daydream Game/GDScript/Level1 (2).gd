@@ -7,7 +7,7 @@ extends Node2D
 @onready var post_process = $PostProcess  # 🔥 for grayscale effect
 @onready var camera: Camera2D = $Camera2D
 @onready var game_over_skull_scene: PackedScene = preload("res://Scenes/Extras/game_over_skull.tscn")
-
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 # ---------------------------
 # EXPORT VARIABLES
@@ -85,7 +85,7 @@ func _on_player_died():
 # Fade to grayscale (fast)
 # Fade to grayscale (fast)
 		post_process.fade_to_grayscale(0.5)
-
+		audio_stream_player_2d.play()
 # Wait for the fade to complete + 1s delay for drama
 # Let dying player still animate
 		if last_dead:

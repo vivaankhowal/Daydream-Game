@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dh8rs828mf3wi"]
+[gd_scene load_steps=20 format=3 uid="uid://dh8rs828mf3wi"]
 
 [ext_resource type="Script" uid="uid://b7xcivcs1vqve" path="res://GDScript/Level1 (2).gd" id="1_u41q6"]
 [ext_resource type="Texture2D" uid="uid://dom2me3343281" path="res://assets/Level 1 Tileset/atlas_floor-16x16.png" id="2_obswb"]
@@ -6,17 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://buxjehlghyx54" path="res://assets/Level 1 Tileset/atlas_walls_low-16x16.png" id="4_xxu4b"]
 [ext_resource type="Texture2D" uid="uid://c5168hh2dgnle" path="res://assets/Dungeon_Tileset.png" id="5_pp87q"]
 [ext_resource type="Texture2D" uid="uid://brs5g8v5c7bep" path="res://assets/Dungeon Tile Set.png" id="6_okxl5"]
-[ext_resource type="Script" uid="uid://xltblp3088v4" path="res://GDScript/Door.gd" id="7_usgde"]
-[ext_resource type="PackedScene" uid="uid://bfitq78lpmsyy" path="res://Scenes/Levels/Level2.tscn" id="8_tbqjp"]
-[ext_resource type="Script" uid="uid://clquxb8lubd1w" path="res://GDScript/InteractZone (2).gd" id="9_skqxo"]
 [ext_resource type="Script" uid="uid://g4mpuxjexr0q" path="res://GDScript/Camera2D2.gd" id="10_gk0le"]
 [ext_resource type="PackedScene" uid="uid://pf3xrpprsaqb" path="res://Scenes/Player Assets/Player1.tscn" id="11_3al7m"]
 [ext_resource type="PackedScene" uid="uid://bn3ckfll5tmhr" path="res://Scenes/Player Assets/Player2.tscn" id="12_vb4wn"]
-[ext_resource type="PackedScene" uid="uid://byu5jahpftxs4" path="res://Scenes/Monsters/spectre.tscn" id="13_e5jik"]
-[ext_resource type="PackedScene" uid="uid://clrxnfnm0dbnb" path="res://Scenes/Monsters/green_slime.tscn" id="14_gbtjv"]
-[ext_resource type="PackedScene" uid="uid://bpoh1k1bxh7dl" path="res://Scenes/Monsters/purple_slime.tscn" id="15_molar"]
-[ext_resource type="PackedScene" uid="uid://dfkg2pyejmnfb" path="res://Scenes/Monsters/hog.tscn" id="16_wvpqg"]
-[ext_resource type="PackedScene" uid="uid://bsadhdcdnjpm0" path="res://Scenes/Extras/cauldronfire.tscn" id="17_nlr5h"]
 [ext_resource type="PackedScene" uid="uid://cn4sbmmois0e7" path="res://Scenes/Extras/post_process.tscn" id="18_wd5et"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8oqoa"]
@@ -536,36 +528,6 @@ b = Vector2(1119, 34)
 a = Vector2(6.02327, -70.396)
 b = Vector2(6, 307)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnfbo"]
-atlas = ExtResource("3_xuce0")
-region = Rect2(256, 84, 64, 42)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vcdry"]
-atlas = ExtResource("3_xuce0")
-region = Rect2(320, 84, 64, 42)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tpj2c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tnfbo")
-}],
-"loop": true,
-"name": &"closed",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vcdry")
-}],
-"loop": true,
-"name": &"open",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fmcd"]
-size = Vector2(27, 22)
-
 [node name="Node2D" type="Node2D"]
 position = Vector2(-5, 0)
 script = ExtResource("1_u41q6")
@@ -595,25 +557,6 @@ position = Vector2(11, -2)
 scale = Vector2(0.996137, 1.00858)
 shape = SubResource("SegmentShape2D_k0wvo")
 
-[node name="Door" type="Node2D" parent="."]
-position = Vector2(560, 0)
-script = ExtResource("7_usgde")
-next_level = ExtResource("8_tbqjp")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Door"]
-position = Vector2(-256, 158)
-sprite_frames = SubResource("SpriteFrames_tpj2c")
-animation = &"closed"
-
-[node name="InteractZone" type="Area2D" parent="Door"]
-position = Vector2(-257, 173)
-collision_mask = 3
-script = ExtResource("9_skqxo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/InteractZone"]
-position = Vector2(1.5, -5)
-shape = SubResource("RectangleShape2D_7fmcd")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2, 16)
 zoom = Vector2(2, 2)
@@ -630,31 +573,7 @@ position = Vector2(293, 167)
 [node name="Player2" parent="." instance=ExtResource("12_vb4wn")]
 position = Vector2(317, 168)
 
-[node name="Spectre" parent="." instance=ExtResource("13_e5jik")]
-position = Vector2(409, 165)
-
-[node name="GreenSlime" parent="." instance=ExtResource("14_gbtjv")]
-position = Vector2(28, 112)
-
-[node name="GreenSlime2" parent="." instance=ExtResource("14_gbtjv")]
-position = Vector2(301, 259)
-
-[node name="PurpleSlime" parent="." instance=ExtResource("15_molar")]
-position = Vector2(566, 117)
-
-[node name="Hog" parent="." instance=ExtResource("16_wvpqg")]
-position = Vector2(27, 213)
-
-[node name="Spectre2" parent="." instance=ExtResource("13_e5jik")]
-position = Vector2(461, 218)
-
-[node name="Node2D3" parent="." instance=ExtResource("17_nlr5h")]
-position = Vector2(344, 156)
-
-[node name="Node2D2" parent="." instance=ExtResource("17_nlr5h")]
-position = Vector2(264, 156)
-
 [node name="PostProcess" parent="." instance=ExtResource("18_wd5et")]
 
-[connection signal="body_entered" from="Door/InteractZone" to="Door" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Door/InteractZone" to="Door" method="_on_area_2d_body_exited"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.842
